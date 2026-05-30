@@ -1,0 +1,40 @@
+[build]
+  command   = "npm run build"
+  publish   = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from   = "/feed"
+  to     = "/rss.xml"
+  status = 301
+
+[[redirects]]
+  from   = "/feed.xml"
+  to     = "/rss.xml"
+  status = 301
+
+# Clean URLs (Astro handles these, but belt-and-suspenders)
+[[redirects]]
+  from   = "/blog/page/1"
+  to     = "/blog"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options     = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy     = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
