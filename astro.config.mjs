@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://ganzodecor.netlify.app',
   integrations: [
     tailwind(),
-    sitemap(),
+    //sitemap(),
     mdx(),
   ],
   markdown: {
